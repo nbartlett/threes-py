@@ -26,10 +26,20 @@ class Game:
         self.rng.shuffle(stack)
         self.stack = stack
 
-    def _nextTile(self):
+    def _resetStackCheck(self):
         if len(self.stack) < 1:
             self._resetStack()
+
+    def _nextTile(self):
+        self._resetStackCheck()
         return self.stack.pop()
+
+    def whatIsNextTile():
+        self._resetStackCheck()
+        if (self.stack[-1] == 1) or (self.stack[-1] == 2):
+            return self.stack[-1]
+        else:
+            return -1
 
     def canShiftRight(self):
         return grid.canShiftRight(self.grid)
@@ -75,6 +85,5 @@ class Game:
 
     def __repr__(self):
         return self.__str__()
-
 
 
