@@ -3,7 +3,7 @@ import math
 import random
 
 def takeTiles(mx):
-    'get a list of tiles that are all lest than the supplied max (mx)'
+    'get a list of tiles that are all least than the supplied max (mx)'
     tiles = [1,2,3]
     while (2 * tiles[-1]) < mx:
         tiles.append(2 * tiles[-1])
@@ -55,30 +55,33 @@ class Game:
 
     def shiftRight(self):
         if grid.canShiftRight(self.grid):
-            return Game(grid.shiftRight(self.grid, self.rng.random(), self._nextTile()), self.stack)
+            return Game(grid.shiftRight(self.grid, self.rng.random(), self._nextTile()), self.stack, self.rng)
         else:
-            return Game(grid.copy(self.grid), self.stack)
+            return Game(grid.copy(self.grid), self.stack, self.rng)
 
     def shiftLeft(self):
         if grid.canShiftLeft(self.grid):
-            return Game(grid.shiftLeft(self.grid, self.rng.random(), self._nextTile()), self.stack)
+            return Game(grid.shiftLeft(self.grid, self.rng.random(), self._nextTile()), self.stack, self.rng)
         else:
-            return Game(grid.copy(self.grid), self.stack)
+            return Game(grid.copy(self.grid), self.stack, self.rng)
 
     def shiftUp(self):
         if grid.canShiftUp(self.grid):
-            return Game(grid.shiftUp(self.grid, self.rng.random(), self._nextTile()), self.stack)
+            return Game(grid.shiftUp(self.grid, self.rng.random(), self._nextTile()), self.stack, self.rng)
         else:
-            return Game(grid.copy(self.grid), self.stack)
+            return Game(grid.copy(self.grid), self.stack, self.rng)
 
     def shiftDown(self):
         if grid.canShiftDown(self.grid):
-            return Game(grid.shiftDown(self.grid, self.rng.random(), self._nextTile()), self.stack)
+            return Game(grid.shiftDown(self.grid, self.rng.random(), self._nextTile()), self.stack, self.rng)
         else:
-            return Game(grid.copy(self.grid), self.stack)
+            return Game(grid.copy(self.grid), self.stack, self.rng)
 
     def score(self):
         return grid.score(self.grid)
+
+    def done(self):
+        return grid.done(self.grid)
 
     def __str__(self):
         return '\n'.join([str(r) for r in self.grid])
